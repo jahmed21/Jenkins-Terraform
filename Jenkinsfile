@@ -13,7 +13,7 @@ try {
   stage('init') {
     node {
       // Get the Terraform tool.
-      def tfHome = tool name: 'Terraform', type: 'com.cloudbees.jenkins.plugins.customtools.CustomTool'
+      def tfHome = tool name: 'Terraform'
       env.PATH = "${tfHome}:${env.PATH}"
       withCredentials([[
         $class: 'AmazonWebServicesCredentialsBinding',
