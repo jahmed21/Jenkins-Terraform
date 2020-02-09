@@ -79,7 +79,7 @@ try {
 //     }
 
     // Run terraform destroy
-    stage('show') {
+    stage('destroy') {
       node {
         withCredentials([[
           $class: 'AmazonWebServicesCredentialsBinding',
@@ -88,7 +88,7 @@ try {
           secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
         ]]) {
           ansiColor('xterm') {
-            sh 'terraform destroy'
+            sh 'terraform destroy -auto-approve'
           }
         }
       }
