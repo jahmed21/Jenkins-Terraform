@@ -1,15 +1,24 @@
 # Terraform state will be stored in S3
 terraform {
-  backend "s3" {
-    bucket = "terraform-bucket-alex"
-    key    = "terraform.tfstate"
-    region = "us-east-1"
+  backend "consul" {
+    address   = "42.114.113.3:8500"
+    scheme    = "http"
+    path      = "tf/terraform.tfstate"
+    lock      = true
+    gzip      = false
   }
+
+//  backend "s3" {
+//    bucket = "terraform-bucket-alex"
+//    key    = "terraform.tfstate"
+//    region = "us-east-1"
+//  }
 }
 
 # Use AWS Terraform provider
 provider "aws" {
-  region = "us-east-1"
+  region = "ap-southeast-1"
+//  region = "us-east-1"
 }
 
 # Create EC2 instance
